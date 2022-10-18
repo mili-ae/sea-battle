@@ -25,7 +25,7 @@ class Grid:
             try:
                 if direction == ShipDirection.HORIZONTAL:
                     self.create_ship_square_at(x, y)
-                    x -= 1
+                    x += 1
                 else:
                     self.create_ship_square_at(x, y)
                     y += 1
