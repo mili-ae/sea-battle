@@ -1,3 +1,4 @@
+from game.utils.enums import SquareStatus
 from .grid import Grid
 
 
@@ -21,11 +22,12 @@ class Player:
         coord = input("Enter coordinates to shoot at (in 'x;y' format): ")
         coord = coord.split(";")
         
-        target = self.shooting_grid.update_square(int(coord[0]), int(coord[1]))
+        target = opponent.player_grid.update_square(int(coord[0]), int(coord[1]))
+        
         self.shooting_grid.draw_grid()
         
         if target == None:
-            return self.shoot(opponent)
+            return None
         elif target == "Miss!":
             print(target)
             self.turn = False
@@ -34,4 +36,5 @@ class Player:
         else:
             print(target)
             opponent.total_ship_squares -= 1
+            self.shooting_grid.update_square(int(coord[0]), int(coord[1]), place=True, type=SquareStatus.DESTROYED)
             return self.shoot(opponent)
