@@ -13,5 +13,5 @@ class ShipDirection(Enum):
 class SquareStatus(Enum):
     NONE = ' '
     OCCUPIED = 'S'
-    DESTROYED = 'D'
+    DESTROYED = 'X'
     MISS = '0'
