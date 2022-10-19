@@ -1,5 +1,5 @@
 from typing import Tuple
-from game import grid, player, ship
+from game import grid, player
 import os
 
 from game.utils.enums import ShipDirection, ShipType

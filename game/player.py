@@ -35,6 +35,3 @@ class Player:
             print(target)
             opponent.total_ship_squares -= 1
             return self.shoot(opponent)
-            
-        
-        pass

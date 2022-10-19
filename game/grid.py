@@ -14,6 +14,9 @@ class Grid:
         for i in range(self.__y):
             self.__grid.append([SquareStatus.NONE] * self.__x)
             
+    def get_grid(self):
+        return self.__grid
+            
     
     def put_ship_at(self, x: int, y: int, direction: ShipDirection, ship: ShipType):
         '''
@@ -40,7 +43,7 @@ class Grid:
         '''
         self.__grid[x][y] = SquareStatus.OCCUPIED
     
-    def update_square(self, x: int, y: int, delete: bool = False) -> str:
+    def update_square(self, x: int, y: int, delete: bool = False, place: bool = False, type: SquareStatus = SquareStatus.NONE) -> str:
         '''
         Updates the status of squares on grid
         '''
@@ -48,6 +51,9 @@ class Grid:
         
         if delete:
             square = SquareStatus.NONE.value
+            return
+        if place:
+            self.__grid[x][y] = type.value
             return
         
         if square == SquareStatus.DESTROYED or square == SquareStatus.MISS:
