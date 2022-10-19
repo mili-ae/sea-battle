@@ -58,7 +58,7 @@ class Grid:
         
         if square == SquareStatus.DESTROYED or square == SquareStatus.MISS:
             return None
-        elif square == SquareStatus.NONE.value:
+        elif square == SquareStatus.NONE.value or square == SquareStatus.NONE:
             square = SquareStatus.MISS
             return "Miss!"
         else:
