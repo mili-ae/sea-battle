@@ -30,10 +30,16 @@ class Main:
         os.system("clear")
         print("Before we begin, you need to place your ships.")
         self.start_placing_ships(player_one)
-        self.start_placing_ships(player_two)  
+        self.start_placing_ships(player_two)
+        
+        os.system("clear")
+        won = self.loop(player_one, player_two)
+        
+        print(f"{won} wins the game!")
+        
         
     def start_placing_ships(self, player: player.Player):
-        pgrid = player.grid        
+        pgrid = player.player_grid        
         
         print("Ships are placed in format of 'x;y;t;d' where X and Y are the coordinates, T - type of the ship in int(1-4) and D - direction(h,v)")
         print(f"\n\nPlayer {player.name}, place your ships!")
@@ -70,8 +76,32 @@ class Main:
         
         return (True, pinput)
             
-    def loop(self):
-        pass
+    def loop(self, player1: player.Player, player2: player.Player) -> str:
+        game_finished = False
+        won = ''
+        
+        while not game_finished:
+            if player1.turn:
+                print(f"{player1.name} turn")
+                player1.shooting_grid.draw_grid()
+                player1.shoot(player2)
+            else:
+                print(f"{player2.name} turn")
+                player2.shooting_grid.draw_grid()
+                player2.shoot(player1)
+                
+            if player2.total_ship_squares == 0:
+                game_finished = True
+                won = player1.name
+                return won
+            elif player1.total_ship_squares == 0:
+                game_finished = True
+                won = player2.name
+                return won
+            else:
+                pass
+                
+
         
 
     
